@@ -1,0 +1,140 @@
+{
+  "seed": 1,
+  "frames": 300,
+  "inputs": [
+    {
+      "at": 20,
+      "press": [
+        "KEY_SPACE"
+      ]
+    },
+    {
+      "from": 30,
+      "to": 60,
+      "hold": [
+        "KEY_LEFT"
+      ]
+    },
+    {
+      "from": 60,
+      "to": 100,
+      "hold": [
+        "KEY_RIGHT"
+      ]
+    },
+    {
+      "from": 100,
+      "to": 120,
+      "hold": [
+        "KEY_UP"
+      ]
+    },
+    {
+      "from": 120,
+      "to": 135,
+      "hold": [
+        "KEY_DOWN"
+      ]
+    },
+    {
+      "from": 135,
+      "to": 145,
+      "hold": [
+        "KEY_A"
+      ]
+    },
+    {
+      "at": 200,
+      "exec": "m = app.meteors[0]; m.x, m.y = app.player.x, app.player.y"
+    },
+    {
+      "at": 220,
+      "press": [
+        "KEY_SPACE"
+      ]
+    }
+  ],
+  "watch": [
+    "app.scene",
+    "app.score",
+    "round(app.player.x, 1)",
+    "round(app.player.y, 1)",
+    "len(app.meteors)"
+  ],
+  "watch_every": 30,
+  "checks": [
+    {
+      "at": 10,
+      "expr": "app.scene == 'title'",
+      "desc": "starts on title screen"
+    },
+    {
+      "at": 21,
+      "expr": "app.scene == 'play'",
+      "desc": "SPACE starts the game"
+    },
+    {
+      "at": 59,
+      "expr": "app.player.x < 30",
+      "desc": "LEFT moves ship left"
+    },
+    {
+      "at": 99,
+      "expr": "app.player.x > 80",
+      "desc": "RIGHT moves ship right"
+    },
+    {
+      "at": 119,
+      "expr": "app.player.y < 70",
+      "desc": "UP moves ship up"
+    },
+    {
+      "at": 134,
+      "expr": "app.player.y > 80",
+      "desc": "DOWN moves ship down"
+    },
+    {
+      "at": 144,
+      "expr": "app.player.x < 80",
+      "desc": "A (WASD) moves ship left"
+    },
+    {
+      "at": 150,
+      "expr": "len(app.meteors) > 0",
+      "desc": "meteors spawn"
+    },
+    {
+      "at": 180,
+      "expr": "app.scene == 'play' and app.score > 0",
+      "desc": "score rises while dodging"
+    },
+    {
+      "at": 199,
+      "expr": "app.scene == 'play' and app.spawn_every() < 24 and app.base_speed() > 1.0",
+      "desc": "still alive before forced hit; difficulty ramps"
+    },
+    {
+      "at": 200,
+      "expr": "app.scene == 'gameover'",
+      "desc": "meteor hit ends the game"
+    },
+    {
+      "at": 219,
+      "expr": "app.scene == 'gameover' and app.high_score > 0",
+      "desc": "stays on game over, best recorded"
+    },
+    {
+      "at": 221,
+      "expr": "app.scene == 'play' and app.score == 0 and app.meteors == []",
+      "desc": "SPACE restarts cleanly"
+    }
+  ],
+  "screenshots": [
+    10,
+    25,
+    90,
+    190,
+    210,
+    "end"
+  ]
+}

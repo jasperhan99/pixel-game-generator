@@ -1,0 +1,104 @@
+{
+  "seed": 3,
+  "frames": 215,
+  "inputs": [
+    {
+      "at": 20,
+      "press": [
+        "KEY_SPACE"
+      ]
+    },
+    {
+      "from": 30,
+      "to": 70,
+      "hold": [
+        "KEY_LEFT"
+      ]
+    },
+    {
+      "from": 70,
+      "to": 130,
+      "hold": [
+        "KEY_RIGHT"
+      ]
+    },
+    {
+      "from": 130,
+      "to": 170,
+      "hold": [
+        "KEY_LEFT"
+      ]
+    },
+    {
+      "at": 175,
+      "exec": "r = app.rocks[0]; r.x, r.y = app.player.x, app.player.y"
+    },
+    {
+      "at": 195,
+      "press": [
+        "KEY_SPACE"
+      ]
+    }
+  ],
+  "watch": [
+    "app.scene",
+    "app.score",
+    "round(app.player.x, 1)",
+    "len(app.rocks)"
+  ],
+  "watch_every": 30,
+  "checks": [
+    {
+      "at": 10,
+      "expr": "app.scene == 'title'",
+      "desc": "starts on title screen"
+    },
+    {
+      "at": 25,
+      "expr": "app.scene == 'play'",
+      "desc": "SPACE starts the game"
+    },
+    {
+      "at": 69,
+      "expr": "app.player.x < 5",
+      "desc": "LEFT moves player left"
+    },
+    {
+      "at": 129,
+      "expr": "app.player.x > 90",
+      "desc": "RIGHT moves player right"
+    },
+    {
+      "at": 169,
+      "expr": "app.player.x < 70",
+      "desc": "LEFT moves player left again"
+    },
+    {
+      "at": 172,
+      "expr": "app.score > 0",
+      "desc": "dodging rocks increases score"
+    },
+    {
+      "at": 173,
+      "expr": "app.scene == 'play' and len(app.rocks) > 0",
+      "desc": "alive before forced hit"
+    },
+    {
+      "at": 185,
+      "expr": "app.scene == 'gameover'",
+      "desc": "rock hitting the ship ends the game"
+    },
+    {
+      "at": 205,
+      "expr": "app.scene == 'play' and app.score == 0",
+      "desc": "SPACE restarts and resets score"
+    }
+  ],
+  "screenshots": [
+    10,
+    60,
+    150,
+    190,
+    210
+  ]
+}

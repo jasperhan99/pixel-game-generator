@@ -1,0 +1,23 @@
+{
+  "seed": 1,
+  "frames": 200,
+  "inputs": [
+    {"at": 20, "press": ["KEY_SPACE"]},
+    {"from": 22, "to": 44, "hold": ["KEY_LEFT"]},
+    {"from": 46, "to": 88, "hold": ["KEY_RIGHT"]},
+    {"at": 100, "exec": "m = app.meteors[0]; m.x = app.player.x + 2; m.y = app.player.y"},
+    {"at": 130, "press": ["KEY_SPACE"]}
+  ],
+  "watch": ["app.scene", "app.score", "len(app.meteors)", "round(app.player.x, 1)"],
+  "watch_every": 20,
+  "checks": [
+    {"at": 10, "expr": "app.scene == 'title'", "desc": "starts on title screen"},
+    {"at": 25, "expr": "app.scene == 'play'", "desc": "SPACE starts the game"},
+    {"at": 43, "expr": "app.player.x < 50", "desc": "LEFT moves player left"},
+    {"at": 87, "expr": "app.player.x > 80", "desc": "RIGHT moves player right"},
+    {"at": 95, "expr": "app.score > 0", "desc": "score grows during play"},
+    {"at": 115, "expr": "app.scene == 'gameover'", "desc": "meteor hit ends the game"},
+    {"at": 145, "expr": "app.scene == 'play' and app.score == 0", "desc": "SPACE restarts with score reset"}
+  ],
+  "screenshots": [10, 60, 115, 145]
+}

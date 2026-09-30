@@ -1,0 +1,20 @@
+{
+  "seed": 1,
+  "frames": 900,
+  "inputs": [
+    {"at": 20, "press": ["KEY_SPACE"]},
+    {"from": 30, "to": 70, "hold": ["KEY_LEFT"]},
+    {"from": 70, "to": 130, "hold": ["KEY_RIGHT"]}
+  ],
+  "watch": ["app.scene", "app.score", "round(app.player.x, 1)"],
+  "watch_every": 30,
+  "checks": [
+    {"at": 10, "expr": "app.scene == 'title'", "desc": "starts on title screen"},
+    {"at": 25, "expr": "app.scene == 'play'", "desc": "SPACE starts the game"},
+    {"at": 69, "expr": "app.player.x < 70", "desc": "LEFT moves player left"},
+    {"at": 129, "expr": "app.player.x > 90", "desc": "RIGHT moves player right"},
+    {"at": "end", "expr": "app.scene == 'gameover'", "desc": "lose condition is reachable"}
+  ],
+  "screenshots": [10, 60, 200, "end"],
+  "stop_when": "app.scene == 'gameover'"
+}
